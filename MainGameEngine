@@ -1,0 +1,73 @@
+import pygame
+from pygame.locals import *
+pygame.init()
+
+import time
+import random
+from random import randint
+import sys
+
+gameDisplay_width = 800
+gameDisplay_height = 600
+
+gameDisplay = pygame.display.set_mode((gameDisplay_width, gameDisplay_height))
+
+pygame.display.update()
+
+pygame.display.set_caption(("Space Apples - Created by Tyler McDonald"))
+pygame.display.update()
+
+white = (255,255,255)
+black = (0,0,0)
+red = (255,0,0)
+green = (0,255,0)
+blue = (0,0,255)
+
+x1 = 300
+y1 = 400
+vel = 1
+
+x2 = random.randrange(0, 600)
+y2 = random.randrange(0, 500)
+
+x3 = random.randrange(0, 600)
+y3 = random.randrange(0, 500)
+
+x4 = random.randrange(0, 600)
+y4 = random.randrange(0, 500)
+
+while True:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+
+        if event.type == KEYDOWN:
+            if (event.key == K_LEFT) and x1 > vel:
+                x1 -= 20
+                pygame.display.update()
+                
+            elif (event.key == K_RIGHT) and x1 < gameDisplay_width - 60:
+                x1 += 20
+                pygame.display.update()
+
+            elif (event.key == K_UP) and y1 > vel:
+                y1 -= 20
+                pygame.display.update()
+
+            elif (event.key == K_DOWN) and y1 < gameDisplay_height - 60:
+                y1 += 20
+                pygame.display.update()
+                
+        pygame.display.update()
+
+        gameDisplay.fill(black)
+        
+        spaceship = pygame.draw.rect(gameDisplay, blue, (x1, y1, 60, 60))
+        apple = pygame.draw.rect(gameDisplay, red, (x2, y2, 25, 25))
+        apple2 = pygame.draw.rect(gameDisplay, red, (x3, y3, 25, 25))
+        apple3 = pygame.draw.rect(gameDisplay, red, (x4, y4, 25, 25))
+        pygame.display.update()
+
+pygame.quit()
+pygame.display.update()
